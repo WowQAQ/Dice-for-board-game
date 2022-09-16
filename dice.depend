@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1663070238 source:c:\users\58375\documents\codeblocks\dice\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stddef.h>
+	<time.h>
+	<conio.h>
+	<wchar.h>
+	<locale.h>
+
