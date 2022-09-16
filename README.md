@@ -1,1 +1,1 @@
-# -Dice-for-board-game
+# Dice-for-board-game
