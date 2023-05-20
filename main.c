@@ -4,7 +4,7 @@
 #include<math.h>
 #include<stddef.h>
 #include<time.h>
-#include <conio.h>
+
 #include <wchar.h>
 #include <locale.h>
 int num(int a)
@@ -23,32 +23,83 @@ int main()
 {
      // 应用环境Locale设置
 
-  /*  setlocale(LC_CTYPE,setlocale(LC_ALL,""));
-      wprintf(L"\u127922\n");*/
-	int i,j,a,b,t,sum,bit;
-	double history[99],count=1;
-	for(i=0;i<=12;i++)
+    /*setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+    wprintf(L"\u127922\n");*/
+	int i,j,a,b,t,sum,bit,seed,begin=0,dicenum=2;
+	double history[999],count=1;
+	printf("请输入本局需要的骰子数量(1-100)\n");
+    scanf("%d",&dicenum);
+	for(i=dicenum;i<=6*dicenum;i++)
     {
         history[i]=0;
     }
+
+    time_t timep;
+    time (&timep);
+    printf("当前时间为：%s", asctime( gmtime(&timep) ) );
+    seed=time(&timep);
+    srand(seed%65535);
+    printf("本局随机数种子为%d\n",seed%65535);
+
+    /*t=clock();
+    srand(t);
+    printf("本局随机数种子为%d",t);*/
+    while(begin<10000)
+    {
+
+        /*t=clock();
+        srand(t);*/
+        //printf("time=%d\n",t);
+        sum=0;
+        for(j=0;j<dicenum;j++)
+        {
+            sum+=(rand()%6)+1;
+        }
+        //b=(rand()%6)+1;
+        //sum=a+b;
+        history[sum]++;
+        count++;
+        begin++;
+    }
+    printf("运行10000次后的概率分布如下\n");
+    printf("-------------------------------------------------------------\n");
+        printf("   大小   |   出现次数   |   概率   \n");
+        for(i=dicenum;i<=6*dicenum;i++)
+        {
+            printf("      %d    ",i);
+            //bit=num(history[i]);
+            printf("       %.0f    ",history[i]);
+            printf("      %.2f    \n",(history[i]/count)*100);
+        }
+    //统计清零
+    for(i=dicenum;i<=6*dicenum;i++)
+    {
+        history[i]=0;
+    }
+    count=1;
+    getchar();
 	while(getchar()!=NULL)
     {
-        t=clock();
-        srand(t);
         //printf("time=%d\n",t);
-        a=(rand()%6)+1;
+        //system("cls");
+        sum=0;
+        for(j=0;j<dicenum;j++)
+        {
+            sum+=(rand()%6)+1;
+        }
+        /*a=(rand()%6)+1;
         b=(rand()%6)+1;
-        sum=a+b;
+        sum=a+b;*/
         printf("第%.0f次\n",count);
-        printf("first one=%d,",a);
-        printf("second one=%d\n",b);
+        /*printf("first one=%d,",a);
+        printf("second one=%d\n",b);*/
         printf("sum=%d\n",sum);
         history[sum]++;
 
-        //system("cls");
+
         printf("-------------------------------------------------------------\n");
         printf("   大小   |   出现次数   |   概率   \n");
-        for(i=2;i<=12;i++)
+        for(i=dicenum;i<=6*dicenum;i++)
         {
             printf("      %d    ",i);
             //bit=num(history[i]);

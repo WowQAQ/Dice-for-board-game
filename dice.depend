@@ -10,3 +10,13 @@
 	<wchar.h>
 	<locale.h>
 
+1684584547 source:c:\users\58375\documents\codeblocks\dice\dice-for-board-game\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stddef.h>
+	<time.h>
+	<wchar.h>
+	<locale.h>
+
